@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html style="height: 100%">
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+        <script src="https://d3js.org/d3.v4.min.js"></script>
+
+        <script type="text/javascript">
+var maleProData=[];//initial
+var femaleProData = [];
+var femaleData=[];
+var maleData=[];
+var malSeriesData18 = [];
+var femalSeriesData18 = [];
+var malSeriesData15 = [];
+var femalSeriesData15 = [];
+var malSeriesData13 = [];
+var femalSeriesData13 = [];
+var malSeriesData11 = [];
+var femalSeriesData11 = [];
+//get csv object
+d3.csv("./maleMean2018.csv",function(error1,maleCSV18){  
+    d3.csv("./femaleMean2018.csv", function(error2,femaleCSV18) {
+        d3.csv("./maleMean2015.csv", function(error2,maleCSV15) {
+            d3.csv("./femaleMean2015.csv", function(error2,femaleCSV15) {
+                d3.csv("./maleMean2013.csv", function(error2,maleCSV13) {
+                    d3.csv("./femaleMean2013.csv", function(error2,femaleCSV13) {
+                        d3.csv("./maleMean2011.csv", function(error2,maleCSV11) {
+                            d3.csv("./femaleMean2011.csv", function(error2,femaleCSV11) {
+                                 
+    if(error1){  
+        console.log(error1);  
+    }else{
+        //2018
+    for( var i=0; i<maleCSV18.length; i++ ){  
+        maleProData.push(maleCSV18[i].region);           //csv to array
+        maleData.push(parseFloat(maleCSV18[i].net_trans));
+        malSeriesData18.push({
+            value : maleCSV18[i].net_trans,
+            name : maleCSV18[i].region
+        })
+
+    }
+
+    for( var i=0; i<femaleCSV18.length; i++ ){  
+        maleProData.push(femaleCSV18[i].region);           //csv to array
+        maleData.push(parseFloat(femaleCSV18[i].net_trans));
+        femalSeriesData18.push({
+            value : femaleCSV18[i].net_trans,
+            name : femaleCSV18[i].region
+        })
+
+    }
+    //2015
+    for( var i=0; i<maleCSV15.length; i++ ){  
+        maleProData.push(maleCSV15[i].region);           //csv to array
+        maleData.push(parseFloat(maleCSV15[i].net_trans));
+        malSeriesData15.push({
+            value : maleCSV15[i].net_trans,
+            name : maleCSV15[i].region
+        })
+
+    }
+
+    for( var i=0; i<femaleCSV15.length; i++ ){  
+        maleProData.push(femaleCSV15[i].region);           //csv to array
+        maleData.push(parseFloat(femaleCSV15[i].net_trans));
+        femalSeriesData15.push({
+            value : femaleCSV15[i].net_trans,
+            name : femaleCSV15[i].region
+        })
+
+    }
+    //2013
+
+    for( var i=0; i<maleCSV13.length; i++ ){  
+        maleProData.push(maleCSV13[i].region);           //csv to array
+        maleData.push(parseFloat(maleCSV13[i].net_trans));
+        malSeriesData13.push({
+            value : maleCSV13[i].net_trans,
+            name : maleCSV13[i].region
+        })
+
+    }
+
+    for( var i=0; i<femaleCSV13.length; i++ ){  
+        maleProData.push(femaleCSV13[i].region);           //csv to array
+        maleData.push(parseFloat(femaleCSV13[i].net_trans));
+        femalSeriesData13.push({
+            value : femaleCSV13[i].net_trans,
+            name : femaleCSV13[i].region
+        })
+
+    }
+    //2011
+    for( var i=0; i<maleCSV11.length; i++ ){  
+        maleProData.push(maleCSV11[i].region);           //csv to array
+        maleData.push(parseFloat(maleCSV11[i].net_trans));
+        malSeriesData11.push({
+            value : maleCSV11[i].net_trans,
+            name : maleCSV11[i].region
+        })
+
+    }
+
+    for( var i=0; i<femaleCSV11.length; i++ ){  
+        maleProData.push(femaleCSV11[i].region);           //csv to array
+        maleData.push(parseFloat(femaleCSV11[i].net_trans));
+        femalSeriesData11.push({
+            value : femaleCSV11[i].net_trans,
+            name : femaleCSV11[i].region
+        })
+
+    }
+
+var dom = document.getElementById("container");
+var myChart = echarts.init(dom);
+var app = {};
+
+
+
+var option;
+
+option = {
+    baseOption:{
+        timeline: {
+                    //loop: false,        
+                    axisType: 'category',
+                    show: true,
+                    autoPlay: false,
+                    playInterval: 1500,
+                    bottom:'0%',
+                    data: ['2011', '2013', '2015', '2018'],
+                    label:{
+                        formatter:['2011', '2013', '2015', '2018']
+                    }
+                    
+                },  
+
+
+        tooltip: {
+            trigger: 'item',
+            triggerOn: 'mousemove'
+        },
+
+        toolbox: {
+            orient: 'vertical',
+            top: 'center',
+            feature: {
+                dataView: {readOnly: false},
+                restore: {},
+                saveAsImage: {}
+            }
+        }
+    },
+
+    options:[
+    {
+        title: {
+            text: 'Net Transfer per Region in Gender (CNY)',//title
+            subtext: 'year 2011',
+            left: 'right',
+            top: 'top'
+        },
+        
+
+        toolbox: {
+            orient: 'vertical',
+            top: 'center',
+            feature: {
+                dataView: {readOnly: false},
+                restore: {},
+                saveAsImage: {}
+            }
+        },
+        legend: {
+            orient: 'vertical',
+            left: 'left',
+            type: 'scroll',
+            data: maleProData//ctr+shift+l rename
+        },
+        series: [
+
+ 
+
+            {//bottom
+
+
+                name: 'Female',
+                type: 'funnel',//gragh type
+                maxSize: 1017,
+                height: '40%',
+                //left: '5%',
+                //right:'5%',
+                top: '45%',
+                sort: 'ascending',
+                data: femalSeriesData11
+            },
+            {//top
+                name: 'Male',
+                type: 'funnel',
+                maxSize: 863.64,
+                height: '40%',
+                //left: '10%',
+                //right: '10%',
+                top: '5%',
+            
+                data: malSeriesData11
+            },
+        
+        ]
+    },
+
+    {
+        title: {
+            text: 'Net Transfer per Region in Gender(CNY)',//title
+            subtext: 'year 2013',
+            left: 'right',
+            top: 'top'
+        },
+
+        toolbox: {
+            orient: 'vertical',
+            top: 'center',
+            feature: {
+                dataView: {readOnly: false},
+                restore: {},
+                saveAsImage: {}
+            }
+        },
+        legend: {
+            orient: 'vertical',
+            left: 'left',
+            type: 'scroll',
+            data: maleProData//ctr+shift+l rename
+        },
+        series: [
+            {//bottom
+
+                name: 'Female',
+                type: 'funnel',//gragh type
+                maxSize: 1989.98/2,
+                height: '40%',
+                //left: '10%',
+                //rigth:'10%',
+                top: '45%',
+                sort: 'ascending',
+                data: femalSeriesData13
+            },
+            {//top
+                name: 'Male',
+                type: 'funnel',
+                maxSize: 1563.12/2,
+                height: '40%',
+                //left: '10%',
+                //right:'10%',
+                top: '5%',
+            
+                data: malSeriesData13
+            },
+        
+        ]
+    },
+    {
+        title: {
+            text: 'Net Transfer per Region in Gender(CNY)',//title
+            subtext: 'year 2015',
+            left: 'right',
+            top: 'top'
+        },
+
+        toolbox: {
+            orient: 'vertical',
+            top: 'center',
+            feature: {
+                dataView: {readOnly: false},
+                restore: {},
+                saveAsImage: {}
+            }
+        },
+        legend: {
+            orient: 'vertical',
+            left: 'left',
+            type: 'scroll',
+            data: maleProData//ctr+shift+l rename
+        },
+        series: [
+            {//bottom
+
+                name: 'Female',
+                type: 'funnel',//gragh type
+                maxSize: 3115.2/3,
+                height: '40%',
+                //left: '10%',
+                top: '45%',
+                sort: 'ascending',
+                data: femalSeriesData15
+            },
+            {//top
+                name: 'Male',
+                type: 'funnel',
+                maxSize: 2280.79/3,
+                height: '40%',
+                //left: '10%',
+                top: '5%',
+            
+                data: malSeriesData15
+            },
+        
+        ]
+    },
+
+    {
+        title: {
+            text: 'Net Transfer per Region in Gender(CNY)',//title
+            subtext: 'year 2018',
+            left: 'right',
+            top: 'top'
+        },
+        
+        toolbox: {
+            orient: 'vertical',
+            top: 'center',
+            feature: {
+                dataView: {readOnly: false},
+                restore: {},
+                saveAsImage: {}
+            }
+        },
+        legend: {
+            orient: 'vertical',
+            left: 'left',
+            type: 'scroll',
+            data: maleProData//ctr+shift+l rename
+        },
+        series: [
+            {//bottom
+                
+                name: 'Female',
+                type: 'funnel',//gragh type
+                
+                maxSize: 3108.95/3,
+                //xAxis : 'dataMax',
+                //height: '40%',
+                
+               
+                top: '45%',
+                sort: 'ascending',
+                data: femalSeriesData18
+            },
+            {//top
+                name: 'Male',
+                type: 'funnel',
+                maxSize: 2069.16/3,
+                
+                height: '40%',
+                //middle:'50',
+                //left: 0,
+                //right: 'dataMax',
+                top: '5%',
+            
+                data: malSeriesData18
+            },
+        
+        ]
+    }
+
+
+
+    ]
+
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+    }
+})})})})})})})})
+
+        </script>
+    </body>
+</html>
