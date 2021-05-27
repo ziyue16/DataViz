@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            position: relative;
+            width: 1000px;
+            height: 500px;
+            font-size: 12px;
+            color: rgb(39, 38, 38); 
+            text-align: left;
+            font-weight: bold;
+        }
+
+        .notes {
+            width: 430px;
+            height: 100px;
+            line-height: 20px;
+            /* border: 2px solid pink;*/
+            /* draw the box */
+            position: absolute;
+            bottom: -200px;
+            right: 150px;
+        }
+
+        .look_after_grandchidren {
+            width: 330px;
+            height: 250px;
+            line-height: 400px;
+            /* border: 2px solid pink; */
+            /* draw the box */
+            position: absolute;
+            top: 100px;
+            left: 90px;
+        }
+
+        .financial_transfers {
+            width: 380px;
+            height: 250px;
+            line-height: 300px;
+            /* border: 2px solid pink; */
+            position: absolute;
+            bottom: -100px;
+            left: 80px;
+        }
+
+        .remotely_contact {
+            width: 250px;
+            height: 50px;
+            line-height: 10px;
+            /* border: 2px solid blue; */
+            position: absolute;
+            top: 110px;
+            right: 300px;
+        }
+
+        .co_residence {
+            width: 180px;
+            height: 60px;
+            line-height: 70px;
+            /* border: 2px solid blue; */
+            position: absolute;
+            top: 140px;
+            right: 380px;
+        }
+
+        .weekly_visits {
+            width: 220px;
+            height: 85px;
+            line-height: 75px;
+            /* border: 2px solid blue; */
+            position: absolute;
+            top: 205px;
+            right: 340px;
+        }
+
+        .financial_transfers_2p {
+            width: 250px;
+            height: 150px;
+            line-height: 150px;
+            /* border: 2px solid blue; */
+            position: absolute;
+            bottom: 50px;
+            right: 305px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        img{
+            width: 950px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <img src="./img.png" alt="Error">
+        <div class="notes">
+            <span class="text0 hidden">The blue vein indicates the transfers from parents to children, and the red vein indicates those from children to parents.</span>
+        </div>
+        <div class="look_after_grandchidren">
+            <span class="text1 hidden">Time Transfer with 0.19 Prob.</span>
+        </div>
+        <div class="financial_transfers">
+            <span class="text2 hidden">Financial Transfer: 487.1 CNY/year</span>
+        </div>
+        <div class="remotely_contact">
+            <span class="text3 hidden">Emotional Transfer: 1.15 times/week</span>
+        </div>
+        <div class="co_residence">
+            <span class="text4 hidden">Co-residence with 0.15 Prob.</span>
+        </div>
+        <div class="weekly_visits">
+            <span class="text5 hidden">Emotional Transfer: 2.4 times/week</span>
+        </div>
+        <div class="financial_transfers_2p">
+            <span class="text6 hidden">Financial Transfer: 1306.4 CNY/year</span>
+        </div>
+    </div>
+
+    <script>
+        let dom0 = document.querySelector('.notes');
+        let text0 = document.querySelector('.text0');
+        // mouse move in
+        dom0.onmouseover = function () {
+            // add hidden
+            text0.classList.remove('hidden')
+        }
+        // mouse move out
+        dom0.onmouseout = function () {
+            // one[0].style.display = 'block';
+            text0.classList.add('hidden')
+        }
+
+        let dom1 = document.querySelector('.look_after_grandchidren');
+        let text1 = document.querySelector('.text1');
+        // mouse move in
+        dom1.onmouseover = function () {
+            // add hidden
+            text1.classList.remove('hidden')
+        }
+        // mouse move out
+        dom1.onmouseout = function () {
+            // one[0].style.display = 'block';
+            text1.classList.add('hidden')
+        }
+
+        let dom2 = document.querySelector('.financial_transfers');
+        let text2 = document.querySelector('.text2');
+        dom2.onmouseover = function () {
+            // one[0].style.display = 'block';
+            text2.classList.remove('hidden')
+        }
+        dom2.onmouseout = function () {
+            // one[0].style.display = 'block';
+            text2.classList.add('hidden')
+        }
+
+        let dom3 = document.querySelector('.remotely_contact');
+        let text3 = document.querySelector('.text3');
+        dom3.onmouseover = function () {
+            // one[0].style.display = 'block';
+            text3.classList.remove('hidden')
+        }
+        dom3.onmouseout = function () {
+            // one[0].style.display = 'block';
+            text3.classList.add('hidden')
+        }
+
+        let dom4 = document.querySelector('.co_residence');
+        let text4 = document.querySelector('.text4');
+        dom4.onmouseover = function () {
+            // one[0].style.display = 'block';
+            text4.classList.remove('hidden')
+        }
+        dom4.onmouseout = function () {
+            // one[0].style.display = 'block';
+            text4.classList.add('hidden')
+        }
+
+        let dom5 = document.querySelector('.weekly_visits');
+        let text5 = document.querySelector('.text5');
+        dom5.onmouseover = function () {
+            // one[0].style.display = 'block';
+            text5.classList.remove('hidden')
+        }
+        dom5.onmouseout = function () {
+            // one[0].style.display = 'block';
+            text5.classList.add('hidden')
+        }
+
+        let dom6 = document.querySelector('.financial_transfers_2p');
+        let text6 = document.querySelector('.text6');
+        dom6.onmouseover = function () {
+            // one[0].style.display = 'block';
+            text6.classList.remove('hidden')
+        }
+        dom6.onmouseout = function () {
+            // one[0].style.display = 'block';
+            text6.classList.add('hidden')
+        }
+
+        
+    </script>
+</body>
+
+</html>
